@@ -39,42 +39,30 @@ class Runner:
         
         #This for section is going to calculate the aerobic zones of the runner
         #each zone is a range so they have two limits 
-        lLimitZone1 = (50*self.maxHeartRate)/100 
-        uLimitZone1 = (60*self.maxHeartRate)/100 
 
-        lLimitZone2 = (61*self.maxHeartRate)/100 
-        uLimitZone2 = (70*self.maxHeartRate)/100 
+        zonesPercentages =[(50,60), (61,70), (71,80), (81,90), (91,100)]  
 
-        lLimitZone3 = (71*self.maxHeartRate)/100 
-        uLimitZone3 = (80*self.maxHeartRate)/100    
+        
+        for zone in zonesPercentages:
 
-        lLimitZone4 = (81*self.maxHeartRate)/100 
-        uLimitZone4 = (90*self.maxHeartRate)/100      
+            lLimit = (zone[0]*self.maxHeartRate)/100
+            uLimit = (zone[1]*self.maxHeartRate)/100
 
-        lLimitZone5 = (91*self.maxHeartRate)/100 
-        uLimitZone5 = (100*self.maxHeartRate)/100    
+            i = zonesPercentages.index(zone) + 1 
 
-        #i = 1
-        #for zone in self.aerobicZones:
-          #  self.aerobicZones["zone{}".format(i)].append(lLimitZone1)
-           # self.aerobicZones["zone{}".format(i)].append(uLimitZone1) 
-            
+            self.addAerobicZone(f'zone{i}',lLimit, uLimit)
+        
+
+    def addAerobicZone(self,zone, minH, maxH):
+        self.aerobicZones[zone].append(minH)
+        self.aerobicZones[zone].append(maxH)
 
 
-        self.aerobicZones["zone1"].append(lLimitZone1) 
-        self.aerobicZones["zone1"].append(uLimitZone1) 
-        self.aerobicZones["zone2"].append(lLimitZone2) 
-        self.aerobicZones["zone2"].append(uLimitZone2)         
-        self.aerobicZones["zone3"].append(lLimitZone3) 
-        self.aerobicZones["zone3"].append(uLimitZone3)            
-        self.aerobicZones["zone4"].append(lLimitZone4) 
-        self.aerobicZones["zone4"].append(uLimitZone4)      
-        self.aerobicZones["zone5"].append(lLimitZone5) 
-        self.aerobicZones["zone5"].append(uLimitZone5)            
-      
 
 
 
 aldo = Runner("Aldo", "Male", 78, 23, 46)
 
 print(aldo.aerobicZones)
+#print(globals())
+#print(locals())
